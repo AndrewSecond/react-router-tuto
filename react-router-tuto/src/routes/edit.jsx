@@ -1,11 +1,11 @@
 import {Form, useLoaderData, redirect, } from 'react-router-dom';
-import { updateContact } from '../contacts';
+import { updateContact } from "../contacts";
 
-export async function action({request, params}) {
+export async function action({ request, params }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
   await updateContact(params.contactId, updates);
-  return redirect(`/contact/$params.contactId`);
+  return redirect(`/contacts/${params.contactId}`);
 }
 
 export default function EditContact() {
@@ -49,7 +49,7 @@ export default function EditContact() {
       </label>
       <p>
         <button type="submit">Save</button>
-        <button type="button">Cancel</button>
+        <button type="button" onClick={() => redirect('/contacts/ixxx1ud')}>Cancel</button>
       </p>
     </Form>
   );
