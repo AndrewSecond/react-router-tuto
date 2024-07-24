@@ -1,0 +1,55 @@
+import React, { useContext, useState } from "react";
+
+const Toggle = ({initialValue}) => {
+  const [isOn, setIsOn] = useState(initialValue);
+
+  return (
+    <>
+    {isOn && <span>On</span>}
+    {!isOn && <span>Off</span>}
+    <button onClick={() => setIsOn((state) => !state)}>Switch</button>
+    </>
+  )
+};
+
+const toggleContext = React.createContext(false);
+
+const ToggleCompound = ({children}) => {
+  const [isOn, setIsOn] = useState(initialValue);
+
+  return (
+    <toggleContext.Provider value={isOn, setIsOn} >
+          <div>{children}</div>
+    </toggleContext.Provider>
+  )
+}
+
+ToggleCompound.on = () => {
+  const {isOn} = useContext(toggleContext);
+  return <>
+  {isOn && <span>On</span>} 
+  </>
+}
+
+ToggleCompound.off = () => {
+  const {isOn} = useContext(toggleContext);
+  return <>
+  {!isOn && <span>Off</span>} 
+  </>
+}
+
+ToggleCompound.buttonSwitch = () => {
+  const {isOn, setIsOn} = useContext(toggleContext);
+  return <>
+  <button onClick={() => setIsOn((state) => !state)}>Switch</button>
+  </>
+}
+
+export default function CompoundComp() {
+  return
+    <ToggleCompound>
+      <ToggleCompound.on />
+      <ToggleCompound.off />
+      <ToggleCompound.buttonSwitch />
+    </ToggleCompound>
+}
