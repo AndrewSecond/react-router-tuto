@@ -1,5 +1,6 @@
 import {Outlet, NavLink, Link, useLoaderData, useNavigation, Form, redirect, } from 'react-router-dom';
 import {getContacts, createContact,} from '../contacts';
+import CompoundComp from '../compoundComp.jsx';
 
 export async function loader() {
   const contacts = await getContacts();
@@ -44,6 +45,7 @@ export default function Root() {
             <button type="submit">New</button>
           </Form>
         </div>
+        <CompoundComp />
         <nav>
           {contacts.length ? (
             <ul>
