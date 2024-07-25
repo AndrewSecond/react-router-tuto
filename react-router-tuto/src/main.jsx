@@ -9,7 +9,9 @@ import ErrorPage from './error-page';
 import Contact, {loader as contactLoader} from './routes/contact';
 import EditContact, {action as editAction} from "./routes/edit";
 import {action as destroyAction} from "./routes/destroy";
+// import CompoundComp from '../compoundComp.jsx';
 import Index from "./routes/index";
+
 
 import './index.css';
 
@@ -47,7 +49,10 @@ const router = createBrowserRouter([
       },
     ],
   },
-
+  // {
+  //   path: "/teams",
+  //   element: <CompoundComp />,
+  // },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

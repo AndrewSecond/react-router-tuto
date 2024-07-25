@@ -15,14 +15,14 @@ const ToggleCompound = ({children, initialValue}) => {
 ToggleCompound.TextOn = function TextOn() {
   const {isOn} = useContext(toggleContext);
   return <>
-  {isOn && <span>On</span>} 
+  {isOn && <span>On </span>} 
   </>
 }
 
 ToggleCompound.TextOff = function TextOff() {
   const {isOn} = useContext(toggleContext);
   return <>
-  {!isOn && <span>Off</span>} 
+  {!isOn && <span>Off </span>} 
   </>
 }
 
