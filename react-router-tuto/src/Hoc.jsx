@@ -19,12 +19,21 @@ const UnauthComponent = () => {
   )
 }
 
+const withAuth = ({AComponent, BComponent}) => {
+  return function WithAuthComponent(props) {
+    const {isAuth} = useIsAuth();
+    return isAuth ? <AComponent {...props}/> : <BComponent {...props}/>;
+  }
+}
+
+const CustomComponent = withAuth({AComponent: AuthComponent, BComponent: UnauthComponent});
+
 export default function Hoc() {
   const {isAuth, switchAuth} = useIsAuth();
   return (
     <div>
       <button onClick={switchAuth}>{isAuth ? "logOut" : "logIn"}</button>
-      {isAuth ? <AuthComponent /> : <UnauthComponent />}
+      <CustomComponent name="teams" />
     </div>
   )
 }
