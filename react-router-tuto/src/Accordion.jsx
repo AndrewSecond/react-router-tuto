@@ -16,7 +16,7 @@ const MenuAccordion = ({children}) => {
   )
 }
 
-MenuAccordion.Group = function ({children, title}) {
+MenuAccordion.Group = function Group({children, title}) {
   const {activeGroup, switchGroup} = useContext(MenuContext);
 
   return (
@@ -27,7 +27,7 @@ MenuAccordion.Group = function ({children, title}) {
   )
 }
 
-MenuAccordion.Item = function ({children, title}) {
+MenuAccordion.Item = function Item({title}) {
   return (
       <div>{title}</div>
   )

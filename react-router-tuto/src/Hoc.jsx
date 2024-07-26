@@ -1,5 +1,7 @@
 import React, { useCallback, useContext, useState } from "react";
 
+const AuthContext = React.createContext();
+
 const useIsAuth = () => {
   const [isAuth, setIsAuth] = useState(false);
   const switchAuth = useCallback(() => {
@@ -21,8 +23,9 @@ const UnauthComponent = () => {
 
 const withAuth = ({AComponent, BComponent}) => {
   return function WithAuthComponent(props) {
-    const {isAuth} = useIsAuth();
-    return isAuth ? <AComponent {...props}/> : <BComponent {...props}/>;
+    const {isAuth} = useContext(AuthContext);
+
+    return isAuth ? <AComponent {...props} /> : <BComponent {...props} />;
   }
 }
 
@@ -31,9 +34,11 @@ const CustomComponent = withAuth({AComponent: AuthComponent, BComponent: UnauthC
 export default function Hoc() {
   const {isAuth, switchAuth} = useIsAuth();
   return (
+    <AuthContext.Provider value={{isAuth, switchAuth}}>
     <div>
       <button onClick={switchAuth}>{isAuth ? "logOut" : "logIn"}</button>
       <CustomComponent name="teams" />
     </div>
+    </AuthContext.Provider>
   )
 }
